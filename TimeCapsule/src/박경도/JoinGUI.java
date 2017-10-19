@@ -14,17 +14,32 @@ import javax.swing.border.TitledBorder;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+
 import javax.swing.UIManager;
 import java.awt.SystemColor;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.GridLayout;
+import java.awt.CardLayout;
+import javax.swing.SwingConstants;
+import java.awt.FlowLayout;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.BoxLayout;
 
 public class JoinGUI {
 	JScrollPane scrollPane;
 	ImageIcon icon;
-	ImageIcon icon2;
+	ImageIcon back;
+	ImageIcon email;
+	ImageIcon pw;
+	ImageIcon nic;
+	ImageIcon btn;
 	private JFrame frame;
 	private JTextField txtHwanavercom;
 	private JTextField nameInput;
@@ -59,20 +74,24 @@ public class JoinGUI {
 	 */
 
 	private void initialize() {
-		icon = new ImageIcon("D:\\\\박경도\\\\배경.jpg");
-		icon2 = new ImageIcon("D:\\\\박경도\\\\배경.jpg");
+		icon = new ImageIcon("../TimeCapsule/Image/1.png");
+		back = new ImageIcon("../TimeCapsule/Image/back.jpg");
+		email = new ImageIcon("../TimeCapsule/Image/email.png");
+		pw = new ImageIcon("../TimeCapsule/Image/pw.png");
+		nic = new ImageIcon("../TimeCapsule/Image/nic.png");
+		btn = new ImageIcon("../TimeCapsule/Image/btn.png");
 
 		frame = new JFrame();
-		frame.setBounds(100, 100, 1294, 764);
+		frame.setBounds(0, 0, 1920, 1040);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		JPanel panel = new JPanel() {
+		JPanel pn_all = new JPanel(){
 			public void paintComponent(Graphics g) {
 				// Approach 1: Dispaly image at at full size
-				g.drawImage(icon.getImage(), 0, 0, null);
+				g.drawImage(back.getImage(), 0, 0, null);
 				// Approach 2: Scale image to size of component
-				// Dimension d = getSize();
-				// g.drawImage(icon.getImage(), 0, 0, d.width, d.height, null);
+				 Dimension d = getSize();
+				 g.drawImage(back.getImage(), 0, 0, d.width, d.height, null);
 				// Approach 3: Fix the image position in the scroll pane
 				// Point p = scrollPane.getViewport().getViewPosition();
 				// g.drawImage(icon.getImage(), p.x, p.y, null);
@@ -80,19 +99,19 @@ public class JoinGUI {
 				super.paintComponent(g);
 			}
 		};
-		panel.setBackground(Color.WHITE);
-		frame.getContentPane().add(panel, BorderLayout.CENTER);
-		SpringLayout sl_panel = new SpringLayout();
-		panel.setLayout(sl_panel);
+		pn_all.setBackground(Color.WHITE);
+		frame.getContentPane().add(pn_all, BorderLayout.CENTER);
+		SpringLayout sl_pn_all = new SpringLayout();
+		pn_all.setLayout(sl_pn_all);
 
-		JPanel panel_1 = new JPanel();
-		sl_panel.putConstraint(SpringLayout.NORTH, panel_1, 10, SpringLayout.NORTH, panel);
-		sl_panel.putConstraint(SpringLayout.WEST, panel_1, 327, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, panel_1, -7, SpringLayout.SOUTH, panel);
-		sl_panel.putConstraint(SpringLayout.EAST, panel_1, -321, SpringLayout.EAST, panel);
-		panel_1.setBackground(new Color(255, 0, 0, 0));
-		panel_1.setOpaque(false);
-		panel_1.setLayout(null);
+		JPanel pn_bigbox = new JPanel();
+		sl_pn_all.putConstraint(SpringLayout.NORTH, pn_bigbox, 80, SpringLayout.NORTH, pn_all);
+		sl_pn_all.putConstraint(SpringLayout.WEST, pn_bigbox, 677, SpringLayout.WEST, pn_all);
+		sl_pn_all.putConstraint(SpringLayout.SOUTH, pn_bigbox, -113, SpringLayout.SOUTH, pn_all);
+		sl_pn_all.putConstraint(SpringLayout.EAST, pn_bigbox, -606, SpringLayout.EAST, pn_all);
+		pn_bigbox.setBackground(new Color(255, 0, 0, 0));
+		pn_bigbox.setOpaque(false);
+		pn_bigbox.setLayout(null);
 		
 
 		TitledBorder oneTb = // 주변 테두리 색을 지정하기 위해 LineBorder사용
@@ -100,13 +119,13 @@ public class JoinGUI {
 		oneTb.setTitleColor(Color.red); // 타이틀 컬러 지정
 		
 		
-		panel_1.setBorder(new LineBorder(SystemColor.activeCaptionBorder, 3));
+		pn_bigbox.setBorder(new LineBorder(SystemColor.activeCaptionBorder, 2));
 		
 	
 		
-		panel.add(panel_1);
+		pn_all.add(pn_bigbox);
 		
-		JPanel panel_2 = new JPanel() {
+		JPanel pn_smallbox = new JPanel() {
 			public void paintComponent(Graphics g) {
 				// Approach 1: Dispaly image at at full size
 				//g.drawImage(icon2.getImage(), -380,-35, null);
@@ -121,84 +140,117 @@ public class JoinGUI {
 			}
 		};
 		
-		panel_2.setLayout(null);
-		panel_2.setBorder(new LineBorder(SystemColor.activeCaptionBorder, 3));
-		panel_2.setBackground(new Color(255, 0, 0, 0));
-		panel_2.setOpaque(false);
-		panel_2.setBounds(35, 25, 559, 658);
-		panel_1.add(panel_2);
+		pn_smallbox.setLayout(null);
+		pn_smallbox.setBorder(new LineBorder(SystemColor.activeCaptionBorder, 2));
+		pn_smallbox.setBackground(new Color(255, 0, 0, 0));
+		pn_smallbox.setOpaque(false);
+		pn_smallbox.setBounds(34, 71, 559, 707);
+		pn_bigbox.add(pn_smallbox);
 		
-		JLabel lblNewLabel = new JLabel("\uC774\uBA54\uC77C");
-		lblNewLabel.setBounds(143, 203, 57, 15);
-		panel_2.add(lblNewLabel);
+		JLabel lbl_email = new JLabel(""){
+			public void paintComponent(Graphics g) {
+				// Approach 1: Dispaly image at at full size
+				g.drawImage(email.getImage(), 0, 0, null);
+				// Approach 2: Scale image to size of component
+				// Dimension d = getSize();
+				// g.drawImage(icon.getImage(), 0, 0, d.width, d.height, null);
+				// Approach 3: Fix the image position in the scroll pane
+				// Point p = scrollPane.getViewport().getViewPosition();
+				// g.drawImage(icon.getImage(), p.x, p.y, null);
+				setOpaque(false); // 그림을 표시하게 설정,투명하게 조절
+				super.paintComponent(g);
+			}
+		};
+		lbl_email.setBounds(141, 142, 81, 28);
+		pn_smallbox.add(lbl_email);
 		
-		JLabel label = new JLabel("________________________");
-		label.setForeground(new Color(255, 106, 77));
-		label.setBounds(143, 247, 173, 15);
-		panel_2.add(label);
+		JLabel lbl_underbar1 = new JLabel("________________________");
+		lbl_underbar1.setForeground(new Color(255, 106, 77));
+		lbl_underbar1.setBounds(141, 199, 173, 15);
+		pn_smallbox.add(lbl_underbar1);
 		
-		JLabel label_1 = new JLabel("____________________");
-		label_1.setForeground(new Color(255, 106, 77));
-		label_1.setBounds(289, 247, 160, 15);
-		panel_2.add(label_1);
+		JLabel lbl_underbar2 = new JLabel("____________________");
+		lbl_underbar2.setForeground(new Color(255, 106, 77));
+		lbl_underbar2.setBounds(287, 199, 160, 15);
+		pn_smallbox.add(lbl_underbar2);
 		
 		txtHwanavercom = new JTextField();
 		txtHwanavercom.setBackground(Color.WHITE);
 		txtHwanavercom.setToolTipText("");
 		txtHwanavercom.setText("hwa7444@naver.com");
-		txtHwanavercom.setBounds(143, 228, 269, 21);
+		txtHwanavercom.setBounds(141, 180, 269, 21);
 		txtHwanavercom.setDocument((new JTextFieldLimit(30)));
 		txtHwanavercom.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 //		txtHwanavercom.setBackground(new Color(0,0,0,0));
-		panel_2.add(txtHwanavercom);
+		pn_smallbox.add(txtHwanavercom);
 		txtHwanavercom.setColumns(10);
 		txtHwanavercom.setOpaque(false);
 		
-		JLabel label_2 = new JLabel("________________________");
-		label_2.setForeground(new Color(255, 106, 77));
-		label_2.setBounds(143, 351, 173, 15);
-		panel_2.add(label_2);
+		JLabel lbl_underbar3 = new JLabel("________________________");
+		lbl_underbar3.setForeground(new Color(255, 106, 77));
+		lbl_underbar3.setBounds(141, 303, 173, 15);
+		pn_smallbox.add(lbl_underbar3);
 		
-		JLabel label_3 = new JLabel("\uBE44\uBC00\uBC88\uD638");
-		label_3.setBounds(143, 307, 57, 15);
-		panel_2.add(label_3);
+		JLabel label_3 = new JLabel(""){
+			public void paintComponent(Graphics g) {
+				// Approach 1: Dispaly image at at full size
+				g.drawImage(pw.getImage(), 0, 0, null);
+				// Approach 2: Scale image to size of component
+				// Dimension d = getSize();
+				// g.drawImage(icon.getImage(), 0, 0, d.width, d.height, null);
+				// Approach 3: Fix the image position in the scroll pane
+				// Point p = scrollPane.getViewport().getViewPosition();
+				// g.drawImage(icon.getImage(), p.x, p.y, null);
+				setOpaque(false); // 그림을 표시하게 설정,투명하게 조절
+				super.paintComponent(g);
+			}
+		};
+		label_3.setBounds(141, 246, 81, 28);
+		pn_smallbox.add(label_3);
 		
-		JLabel label_4 = new JLabel("____________________");
-		label_4.setForeground(new Color(255, 106, 77));
-		label_4.setBounds(289, 351, 160, 15);
-		panel_2.add(label_4);
+		JLabel lbl_underbar4 = new JLabel("____________________");
+		lbl_underbar4.setForeground(new Color(255, 106, 77));
+		lbl_underbar4.setBounds(287, 303, 160, 15);
+		pn_smallbox.add(lbl_underbar4);
 		
-		JLabel label_5 = new JLabel("________________________");
-		label_5.setForeground(new Color(255, 106, 77));
-		label_5.setBounds(143, 460, 173, 15);
-		panel_2.add(label_5);
+		JLabel lbl_underbar5 = new JLabel("________________________");
+		lbl_underbar5.setForeground(new Color(255, 106, 77));
+		lbl_underbar5.setBounds(141, 412, 173, 15);
+		pn_smallbox.add(lbl_underbar5);
 		
 		nameInput = new JTextField();
 		nameInput.setToolTipText("");
 		nameInput.setText("\uD2B9\uC218\uBB38\uC790 \uC81C\uC678 8 ~ 12\uC790\uB9AC");
 		nameInput.setColumns(10);
 		nameInput.setBackground(Color.WHITE);
-		nameInput.setBounds(143, 441, 173, 21);
+		nameInput.setBounds(141, 393, 173, 21);
 		nameInput.setDocument((new JTextFieldLimit(12)));
 		nameInput.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		nameInput.setBackground(new Color(0,0,0,0));
 		nameInput.setOpaque(false);
-		panel_2.add(nameInput);
+		pn_smallbox.add(nameInput);
 		
-		JLabel label_6 = new JLabel("\uB2C9\uB124\uC784");
-		label_6.setBounds(143, 416, 57, 15);
-		panel_2.add(label_6);
+		JLabel label_6 = new JLabel(""){
+			public void paintComponent(Graphics g) {
+				// Approach 1: Dispaly image at at full size
+				g.drawImage(nic.getImage(), 0, 0, null);
+				// Approach 2: Scale image to size of component
+				// Dimension d = getSize();
+				// g.drawImage(icon.getImage(), 0, 0, d.width, d.height, null);
+				// Approach 3: Fix the image position in the scroll pane
+				// Point p = scrollPane.getViewport().getViewPosition();
+				// g.drawImage(icon.getImage(), p.x, p.y, null);
+				setOpaque(false); // 그림을 표시하게 설정,투명하게 조절
+				super.paintComponent(g);
+			}
+		};
+		label_6.setBounds(141, 355, 81, 28);
+		pn_smallbox.add(label_6);
 		
-		JLabel label_7 = new JLabel("____________________");
-		label_7.setForeground(new Color(255, 106, 77));
-		label_7.setBounds(289, 460, 160, 15);
-		panel_2.add(label_7);
-		
-		JButton btn_JOIN = new JButton("JOIN");
-		btn_JOIN.setBorderPainted(false);
-		btn_JOIN.setBackground(Color.LIGHT_GRAY);
-		btn_JOIN.setBounds(143, 501, 269, 38);
-		panel_2.add(btn_JOIN);
+		JLabel lbl_underbar6 = new JLabel("____________________");
+		lbl_underbar6.setForeground(new Color(255, 106, 77));
+		lbl_underbar6.setBounds(287, 412, 160, 15);
+		pn_smallbox.add(lbl_underbar6);
 		
 		pwInput = new JPasswordField(); //비밀번호 입력창
 		pwInput.setText("rudeh376");
@@ -208,6 +260,50 @@ public class JoinGUI {
 		pwInput.setBackground(new Color(0,0,0,0));
 		pwInput.setOpaque(false);
 
-		panel_2.add(pwInput);
+		pn_smallbox.add(pwInput);
+		
+		JPanel panel = new JPanel(){
+			public void paintComponent(Graphics g) {
+				// Approach 1: Dispaly image at at full size
+//				g.drawImage(btn.getImage(), 0, 0, null);
+				// Approach 2: Scale image to size of component
+				 Dimension d = getSize();
+				 g.drawImage(btn.getImage(), 0, 0, d.width, d.height, null);
+				// Approach 3: Fix the image position in the scroll pane
+				// Point p = scrollPane.getViewport().getViewPosition();
+				// g.drawImage(icon.getImage(), p.x, p.y, null);
+				setOpaque(false); // 그림을 표시하게 설정,투명하게 조절
+				super.paintComponent(g);
+			}
+		};
+		panel.setBounds(173, 486, 205, 35);
+		pn_smallbox.add(panel);
+		
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.setBackground(new Color(240, 240, 240));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
+		panel.setLayout(new GridLayout(0, 1, 0, 0));
+		panel.add(btnNewButton);
+		
+		JPanel pn_logo = new JPanel(){
+			public void paintComponent(Graphics g) {
+				// Approach 1: Dispaly image at at full size
+				g.drawImage(icon.getImage(), 0, 0, null);
+				// Approach 2: Scale image to size of component
+				// Dimension d = getSize();
+				// g.drawImage(icon.getImage(), 0, 0, d.width, d.height, null);
+				// Approach 3: Fix the image position in the scroll pane
+				// Point p = scrollPane.getViewport().getViewPosition();
+				// g.drawImage(icon.getImage(), p.x, p.y, null);
+				setOpaque(false); // 그림을 표시하게 설정,투명하게 조절
+				super.paintComponent(g);
+			}
+		};
+		pn_logo.setBounds(31, 23, 145, 38);
+		pn_bigbox.add(pn_logo);
 	}
 }

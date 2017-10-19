@@ -30,11 +30,11 @@ public class borderGUI {
    JScrollPane scrollPane;
    ImageIcon icon;
    ImageIcon icon2;
-   ImageIcon font;
-   ImageIcon font2;
-   ImageIcon font3;
+   ImageIcon period;
+   ImageIcon title;
+   ImageIcon content;
    
-   ImageIcon Mainicon;
+   ImageIcon back;
    private JFrame frame;
    private JTextField textField;
    private JTextField txt_hour;
@@ -69,12 +69,12 @@ public class borderGUI {
     * Initialize the contents of the frame.
     */
    private void initialize() {
-      Mainicon = new ImageIcon("D:\\back.jpg");
-      icon = new ImageIcon("D:\\1.png");
-      icon2 = new ImageIcon("D:\\2.png");
-      font = new ImageIcon("D:\\period.png");
-      font2 = new ImageIcon("D:\\title.png");
-      font3 = new ImageIcon("D:\\content.png");
+      back = new ImageIcon("../TimeCapsule/Image/back.jpg");
+      icon = new ImageIcon("../TimeCapsule/Image/1.png");
+      icon2 = new ImageIcon("../TimeCapsule/Image/2.png");
+      period = new ImageIcon("../TimeCapsule/Image/period.png");
+      title = new ImageIcon("../TimeCapsule/Image/title.png");
+      content = new ImageIcon("../TimeCapsule/Image/content.png");
       frame = new JFrame();
       frame.setBounds(0, 0, 1920, 1040);
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -82,11 +82,11 @@ public class borderGUI {
       JPanel panel_big = new JPanel() {
          public void paintComponent(Graphics g) {
             // Approach 1: Dispaly image at at full size
-            g.drawImage(Mainicon.getImage(), 0, 0,  null);
+            g.drawImage(back.getImage(), 0, 0,  null);
             // Approach 2: Scale image to size of component
             
              Dimension d = getSize();
-             g.drawImage(Mainicon.getImage(), 0, 0, d.width, d.height, null);
+             g.drawImage(back.getImage(), 0, 0, d.width, d.height, null);
             // Approach 3: Fix the image position in the scroll pane
             // Point p = scrollPane.getViewport().getViewPosition();
             // g.drawImage(icon.getImage(), p.x, p.y, null);
@@ -169,8 +169,9 @@ public class borderGUI {
        pn_small.add(txt_minute);
        
        txt_title = new JTextField();
-       sl_pn_small.putConstraint(SpringLayout.SOUTH, textField, -15, SpringLayout.NORTH, txt_title);
+       sl_pn_small.putConstraint(SpringLayout.WEST, txt_title, 385, SpringLayout.WEST, pn_small);
        sl_pn_small.putConstraint(SpringLayout.EAST, txt_title, -277, SpringLayout.EAST, pn_small);
+       sl_pn_small.putConstraint(SpringLayout.SOUTH, textField, -15, SpringLayout.NORTH, txt_title);
        sl_pn_small.putConstraint(SpringLayout.SOUTH, txt_minute, -15, SpringLayout.NORTH, txt_title);
        sl_pn_small.putConstraint(SpringLayout.SOUTH, txt_hour, -13, SpringLayout.NORTH, txt_title);
        sl_pn_small.putConstraint(SpringLayout.NORTH, txt_title, 315, SpringLayout.NORTH, pn_small);
@@ -231,7 +232,7 @@ public class borderGUI {
        JPanel panel = new JPanel(){
            public void paintComponent(Graphics g) {
                // Approach 1: Dispaly image at at full size
-               g.drawImage(font.getImage(), 0, 0, null);
+               g.drawImage(period.getImage(), 0, 0, null);
                // Approach 2: Scale image to size of component
                
 //                Dimension d = getSize();
@@ -253,11 +254,11 @@ public class borderGUI {
        JPanel panel_1 = new JPanel(){
            public void paintComponent(Graphics g) {
                // Approach 1: Dispaly image at at full size
-//               g.drawImage(font2.getImage(), 0, 0, null);
+               g.drawImage(title.getImage(), 0, 0, null);
                // Approach 2: Scale image to size of component
                
-                Dimension d = getSize();
-                g.drawImage(font2.getImage(), 0, 0, d.width, d.height, null);
+//                Dimension d = getSize();
+//                g.drawImage(title.getImage(), 0, 0, d.width, d.height, null);
                // Approach 3: Fix the image position in the scroll pane
                // Point p = scrollPane.getViewport().getViewPosition();
                // g.drawImage(icon.getImage(), p.x, p.y, null);
@@ -265,11 +266,10 @@ public class borderGUI {
                super.paintComponent(g);
             }
          };
-       sl_pn_small.putConstraint(SpringLayout.WEST, panel_1, 301, SpringLayout.WEST, pn_small);
-       sl_pn_small.putConstraint(SpringLayout.EAST, panel_1, -1024, SpringLayout.EAST, pn_small);
-       sl_pn_small.putConstraint(SpringLayout.WEST, txt_title, 26, SpringLayout.EAST, panel_1);
-       sl_pn_small.putConstraint(SpringLayout.SOUTH, panel_1, 0, SpringLayout.SOUTH, txt_title);
        sl_pn_small.putConstraint(SpringLayout.NORTH, panel_1, 0, SpringLayout.NORTH, txt_title);
+       sl_pn_small.putConstraint(SpringLayout.WEST, panel_1, 0, SpringLayout.WEST, panel);
+       sl_pn_small.putConstraint(SpringLayout.SOUTH, panel_1, 0, SpringLayout.SOUTH, txt_title);
+       sl_pn_small.putConstraint(SpringLayout.EAST, panel_1, -26, SpringLayout.WEST, txt_title);
        pn_small.add(panel_1);
        
        JPanel panel_2 = new JPanel(){
@@ -279,7 +279,7 @@ public class borderGUI {
                // Approach 2: Scale image to size of component
                
                 Dimension d = getSize();
-                g.drawImage(font3.getImage(), 0, 0, d.width, d.height, null);
+                g.drawImage(content.getImage(), 0, 0, d.width, d.height, null);
                // Approach 3: Fix the image position in the scroll pane
                // Point p = scrollPane.getViewport().getViewPosition();
                // g.drawImage(icon.getImage(), p.x, p.y, null);
@@ -293,6 +293,13 @@ public class borderGUI {
        sl_pn_small.putConstraint(SpringLayout.WEST, panel_2, 301, SpringLayout.WEST, pn_small);
        sl_pn_small.putConstraint(SpringLayout.EAST, panel_2, -1024, SpringLayout.EAST, pn_small);
        pn_small.add(panel_2);
+       
+       JComboBox comboBox = new JComboBox();
+       sl_pn_small.putConstraint(SpringLayout.NORTH, comboBox, 0, SpringLayout.NORTH, txt_hour);
+       sl_pn_small.putConstraint(SpringLayout.WEST, comboBox, 0, SpringLayout.WEST, textField);
+       sl_pn_small.putConstraint(SpringLayout.SOUTH, comboBox, -15, SpringLayout.NORTH, txt_title);
+       sl_pn_small.putConstraint(SpringLayout.EAST, comboBox, -12, SpringLayout.WEST, txt_hour);
+       pn_small.add(comboBox);
        sl_panel_big.putConstraint(SpringLayout.NORTH, pn_logo, 89, SpringLayout.NORTH, panel_big);
        sl_panel_big.putConstraint(SpringLayout.SOUTH, pn_logo, 280, SpringLayout.NORTH, panel_big);
        panel_big.add(pn_logo);
