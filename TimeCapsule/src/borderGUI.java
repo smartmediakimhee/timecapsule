@@ -154,7 +154,7 @@ public class borderGUI {
        sl_pn_small.putConstraint(SpringLayout.NORTH, txt_hour, 269, SpringLayout.NORTH, pn_small);
        sl_pn_small.putConstraint(SpringLayout.WEST, txt_hour, 822, SpringLayout.WEST, pn_small);
        txt_hour.setHorizontalAlignment(SwingConstants.CENTER);
-       txt_hour.setText("hour");
+       txt_hour.setText("hour" );
        txt_hour.setColumns(10);
        pn_small.add(txt_hour);
        
@@ -169,10 +169,10 @@ public class borderGUI {
        pn_small.add(txt_minute);
        
        txt_title = new JTextField();
+       sl_pn_small.putConstraint(SpringLayout.SOUTH, textField, -15, SpringLayout.NORTH, txt_title);
        sl_pn_small.putConstraint(SpringLayout.EAST, txt_title, -277, SpringLayout.EAST, pn_small);
        sl_pn_small.putConstraint(SpringLayout.SOUTH, txt_minute, -15, SpringLayout.NORTH, txt_title);
        sl_pn_small.putConstraint(SpringLayout.SOUTH, txt_hour, -13, SpringLayout.NORTH, txt_title);
-       sl_pn_small.putConstraint(SpringLayout.SOUTH, textField, -15, SpringLayout.NORTH, txt_title);
        sl_pn_small.putConstraint(SpringLayout.NORTH, txt_title, 315, SpringLayout.NORTH, pn_small);
        txt_title.setHorizontalAlignment(SwingConstants.CENTER);
        txt_title.setText("title");
@@ -197,11 +197,11 @@ public class borderGUI {
        pn_small.add(btnNewButton);
        
        JPanel panel_calendar = new JPanel();
-       sl_pn_small.putConstraint(SpringLayout.NORTH, textField, 58, SpringLayout.SOUTH, panel_calendar);
-       sl_pn_small.putConstraint(SpringLayout.SOUTH, panel_calendar, -671, SpringLayout.SOUTH, pn_small);
-       sl_pn_small.putConstraint(SpringLayout.NORTH, panel_calendar, 44, SpringLayout.NORTH, pn_small);
-       sl_pn_small.putConstraint(SpringLayout.WEST, panel_calendar, 513, SpringLayout.WEST, pn_small);
-       sl_pn_small.putConstraint(SpringLayout.EAST, panel_calendar, 711, SpringLayout.WEST, pn_small);
+       sl_pn_small.putConstraint(SpringLayout.NORTH, textField, 126, SpringLayout.SOUTH, panel_calendar);
+       sl_pn_small.putConstraint(SpringLayout.WEST, panel_calendar, 431, SpringLayout.WEST, pn_small);
+       sl_pn_small.putConstraint(SpringLayout.EAST, panel_calendar, 629, SpringLayout.WEST, pn_small);
+       sl_pn_small.putConstraint(SpringLayout.NORTH, panel_calendar, 34, SpringLayout.NORTH, pn_small);
+       sl_pn_small.putConstraint(SpringLayout.SOUTH, panel_calendar, -681, SpringLayout.SOUTH, pn_small);
        pn_small.add(panel_calendar);
        panel_calendar.setLayout(new CardLayout(0, 0));
        
