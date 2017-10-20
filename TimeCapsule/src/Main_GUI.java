@@ -3,7 +3,6 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 
 public class Main_GUI {
-
 	private JFrame frame;
 
 	/**

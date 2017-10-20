@@ -1,3 +1,4 @@
+package etc.function;
 public class MyLocationCheckMain {
 
 	public static void main(String[] args) {

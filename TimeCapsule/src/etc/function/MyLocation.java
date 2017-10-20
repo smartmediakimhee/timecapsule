@@ -1,3 +1,4 @@
+package etc.function;
 import java.io.IOException;
 
 import org.jsoup.Jsoup;
